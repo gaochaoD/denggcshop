@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<table border="1" style="text-align: center">
+    <caption>产品类型信息</caption>
+    <tr>
+        <th>ID</th>
+        <th>产品类型名称</th>
+        <th>产品类型描述</th>
+        <th>产品类型等级</th>
+        <th>父ID</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="producttype : ${producttypes}">
+        <td th:text="${producttype.id}"></td>
+        <td th:text="${producttype.producttypename}"></td>
+        <td th:text="${producttype.producttypedescription}"></td>
+        <td th:text="${producttype.typegrade}"></td>
+        <td th:text="${producttype.parentid}"></td>
+        <td>
+            <a href="#" th:href="@{/producttype/get(id=${producttype.id})}">查看</a>
+            <a href="#" th:href="@{toupdate(id=${producttype.id})}">编辑</a>
+            <a href="#" th:href="@{delete(id=${producttype.id})}">删除</a>
+        </td>
+    </tr>
+</table>
+</body>
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+</html>

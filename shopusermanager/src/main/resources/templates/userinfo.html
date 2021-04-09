@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+<h2>用户详情界面</h2>
+<form>
+    <span th:text="${user.id}"></span>
+    <span th:text="${user.name}"></span>
+    <span th:text="${user.age}"></span>
+    <span th:text="${user.passwordencrypt}"></span>
+    <span th:text="${user.address}"></span>
+    <span th:text="${user.telphone}"></span>
+    <span th:text="${user.qq}"></span>
+    <span th:text="${user.weixin}"></span>
+    <span th:text="${user.email}"></span>
+    <span th:text="${user.sex}"></span>
+    <span th:text="${user.birthday}"></span>
+</form>
+
+</body>
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+</html>

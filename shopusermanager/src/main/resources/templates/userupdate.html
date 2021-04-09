@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<form action="/user/update" method="post">
+    <input type="hidden" name="id" th:value="${user.id}"/>
+    姓名：<input name="name" th:value="${user.name}"/></br>
+    年龄：<input name="age" th:value="${user.age}"/></br>
+    密码：<input name="passwordencrypt" th:value="${user.passwordencrypt}"/></br>
+    地址：<input name="address" th:value="${user.address}"/></br>
+    电话号码：<input name="telphone" th:value="${user.telphone}"/></br>
+    QQ：<input name="qq" th:value="${user.qq}"/></br>
+    微信：<input name="weixin" th:value="${user.weixin}"/></br>
+    Email：<input name="email" th:value="${user.email}"/></br>
+    性别：<input name="sex" th:value="${user.sex}"/></br>
+    生日：<input name="birthday" th:value="${user.birthday}"/></br>
+    <input type="submit" value="修改"/>
+
+</form>
+</body>
+
+</html>

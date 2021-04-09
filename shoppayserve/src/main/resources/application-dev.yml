@@ -1,0 +1,38 @@
+server:
+  port: 10115
+
+spring:
+  application:
+    name: PayServe
+  datasource:
+    url: jdbc:mysql://localhost:3306/denggcshop?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&nullCatalogMeansCurrent=true
+#    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    max-wait: 6000
+    min-idle: 5
+    max-active: 200
+    initial-size: 5
+    filters: stat,slf4j
+
+  jackson:
+    time-zone: UTC
+    date-format: yyyy-MM-dd HH:mm:ss
+
+
+#集成logback日志配置
+logging:
+  config: classpath:logback.xml
+  level:
+    com.denggc3: debug
+
+
+
+
+#整合mybatis-plus
+mybatis-plus:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/denggc3/*.xml
+  type-aliases-package: com.denggc3.entity
+

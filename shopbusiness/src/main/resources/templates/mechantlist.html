@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<table border="1" style="text-align: center">
+    <caption>用户信息</caption>
+    <tr>
+        <th>ID</th>
+        <th>商家姓名</th>
+        <th>商家店铺名称</th>
+        <th>商家账号</th>
+        <th>商家密码</th>
+        <th>商家经营范围</th>
+        <th>操作</th>
+
+    </tr>
+    <tr th:each="mechant : ${mechants}">
+        <td th:text="${mechant.id}"></td>
+        <td th:text="${mechant.merchantname}"></td>
+        <td th:text="${mechant.merchantshopname}"></td>
+        <td th:text="${mechant.merchantaccount}"></td>
+        <td th:text="${mechant.mechantpassword}"></td>
+        <td th:text="${mechant.mechantscope}"></td>
+        <td>
+            <a href="#" th:href="@{/mechant/get(id=${mechant.id})}">查看</a>
+            <a href="#" th:href="@{toupdate(id=${mechant.id})}">编辑</a>
+            <a href="#" th:href="@{/mechant/delete(id=${mechant.id})}">删除</a>
+        </td>
+    </tr>
+</table>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+server:
+  port: 18083
+
+spring:
+  application:
+    name: PayServe
+  datasource:
+    url: jdbc:mysql://10.168.12.56:56182/businessmgnt?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: denggc3
+    password: Dgc@1314A
+    max-wait: 6000
+    min-idle: 5
+    max-active: 200
+    initial-size: 5
+    filters: stat,slf4j
+  jackson:
+    time-zone: UTC
+    date-format: yyyy-MM-dd HH:mm:ss
+  redis:
+    #    sentinel:
+    #      master: master
+    #      nodes: 10.168.26.5:63094,10.168.26.16:45319,10.168.26.6:45319
+    host: 10.168.26.5 #主机地址  哨兵模式下不用配置
+    port: 63094 #端口  哨兵模式下不用配置
+    password: qwer95784
+    jedis:
+      pool:
+        max-active: -1
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 3600
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+
+
+#集成logback日志配置
+logging:
+  # path:/log
+  # path: E:\log
+  config: classpath:logback.xml
+  level:
+    Risk: debug
+    com.cu.businessriskcontrol: debug
+
+
+#整合mybatis
+mybatis:
+  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations: classpath*:/mybatis/mapper/**/*.xml #扫描mybatis/mapper下的xml文件与model绑定
+  #type-aliases-package: com.cu.businessriskcontrol.*.model

@@ -1,0 +1,4 @@
+spring:
+  data:
+    solr:
+      host: http://39.104.49.76:8080/solr/#/collection1/query

@@ -1,0 +1,84 @@
+<configuration>
+
+<!--    定义日志输出格式和存储路径-->
+    <property name="LOG_PATTERN" value="%date{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+    <property name="FILE_PATH" value="D:/logs/course03/demo.%d{yyyy-MM-dd}.%i.log" />
+
+<!--    定义控制台输出-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 按照上面配置的 LOG_PATTERN 来打印日志 -->
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+<!--    定义日志文件的存储目录-->
+    <appender name="CANAL-ROOT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>destination</Key>
+            <DefaultValue>BusinessManager</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${destination}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>logs/${destination}/${destination}.log</File><!-- logs目录生成于当前工程目录，非当前模块目录 -->
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>logs/${destination}/%d{yyyy-MM-dd}/${destination}-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <!-- or whenever the file size reaches 100MB -->
+                        <maxFileSize>512MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>60</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>
+                        ${LOG_PATTERN}
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+<!--    定义日志文件的相关参数-->
+    <appender name="CANAL-META" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>destination</Key>
+            <DefaultValue>BusinessManager</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="META-FILE-${destination}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>logs/${destination}/meta.log</File>
+                <rollingPolicy
+                        class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <!-- rollover daily -->
+                    <fileNamePattern>logs/${destination}/%d{yyyy-MM-dd}/meta-%d{yyyy-MM-dd}-%i.log.gz</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <!-- or whenever the file size reaches 100MB -->
+                        <maxFileSize>32MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <maxHistory>60</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>
+                        %d{yyyy-MM-dd HH:mm:ss.SSS} - %msg%n
+                    </pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <logger name="com.unicom" level="DEBUG"></logger>
+
+    <root level="INFO">
+        <!--  -->
+        <appender-ref ref="CONSOLE"/>
+        <!-- -->
+        <appender-ref ref="CANAL-ROOT" />
+    </root>
+
+
+
+
+
+</configuration>

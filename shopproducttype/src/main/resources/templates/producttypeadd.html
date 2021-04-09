@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+
+<h2>产品类型添加界面</h2>
+父产品名称：<span th:text="${producttype.producttypename}"></span>
+<form action="/producttype/add" method="post">
+    产品类型名称：<input name="producttypename"/></br>
+    产品类型描述：<input name="producttypedescription"/></br>
+    产品类型等级：<input name="typegrade"/></br>
+    <input type="hidden" name="parentid" th:value="${producttype.id}"/></br>
+
+    <input type="submit" value="提交"/>
+
+</form>
+</body>
+
+</html>

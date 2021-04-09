@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+
+<body>
+<h2>产品类型详情界面</h2>
+<form>
+    <span th:text="${producttype.id}"></span>
+    <span th:text="${producttype.producttypename}"></span>
+    <span th:text="${producttype.producttypedescription}"></span>
+    <span th:text="${producttype.typegrade}"></span>
+    <span th:text="${producttype.parentid}"></span>
+
+</form>
+
+<a href="#" th:href="@{/producttype/toadd(id=${producttype.id})}">添加子产品类型</a>
+
+</body>
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+</html>

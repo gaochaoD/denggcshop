@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.denggc3.mapper.ProductMapper">
+
+
+    <select id="queryProductbyvo" parameterType="com.denggc3.vo.ProductVo" resultType="com.denggc3.model.Product">
+        select * from product
+        <where>
+            <include refid="productSql"></include>
+        </where>
+    </select>
+
+    <sql id="productSql" >
+        <if test="producttypeid!=null and producttypeid!=''">
+             producttypeid = "${producttypeid}"
+        </if>
+        <if test="producttitle!=null and producttitle!='' ">
+            and producttitle = "${producttitle}"
+        </if>
+        <if test="productprice!=null and productprice!='' ">
+            and productprice = "${productprice}"
+        </if>
+        <if test="mechartid!=null and mechartid!='' ">
+            and mechartid = "${mechartid}"
+        </if>
+
+    </sql>
+
+</mapper>
